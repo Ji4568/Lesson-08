@@ -22,3 +22,18 @@ y = cos(z) #三角函數cos
 plot.new()
 plot.window(xlim = c(-1, 1), ylim = c(-1, 1))
 lines(x, y)
+
+#基礎繪圖函數簡介-2(3)
+#學會函數「lines()」以後，我們能夠幫散布圖上加預測線了…
+#預測線的方程式，需要先用第7課所學到的函數「glm()」幫忙建立，你看得懂下面的程式碼嗎？
+# 建立MODEL以及預測線的座標
+X = dat[,"SBP"]
+Y = dat[,"DBP"]
+model = glm(Y~X)
+COEF = model$coefficients
+x = c(0, 200)
+y = COEF[1] + COEF[2] * x
+
+plot(dat[,"SBP"], dat[,"DBP"], ylab = "DBP", xlab = "SBP", main = "Scatter plot of SBP and DBP", pch = 19)
+lines(x, y, col = "red", lwd = 2)
+
