@@ -37,3 +37,33 @@ y = COEF[1] + COEF[2] * x
 plot(dat[,"SBP"], dat[,"DBP"], ylab = "DBP", xlab = "SBP", main = "Scatter plot of SBP and DBP", pch = 19)
 lines(x, y, col = "red", lwd = 2)
 
+#基礎繪圖函數簡介-2(4)
+#其實，你還可以為你的圖形加點料…
+#函數「text()」可以為你的圖片上加文字描述
+x = c(1, 0, -1, 0)
+y = c(0, 1, 0, -1)
+t = c("A", "B", "C", "D")
+plot.new()
+plot.window(xlim = c(-1, 1), ylim = c(-1, 1))
+text(x, y, t)
+
+#函數「points()」可以為你的圖片上加點
+x = c(1, 0, -1, 0)
+y = c(0, 1, 0, -1)
+plot.new()
+plot.window(xlim = c(-1, 1), ylim = c(-1, 1))
+points(x, y, pch = 1:4)
+
+#函數「legend()」可以為你的圖片加上註釋
+plot.new()
+plot.window(xlim = c(-1, 1), ylim = c(-1, 1))
+legend("topleft", c("Female", "Male"), col = c("red", "blue"), pch = c(15, 19), bg = "gray90")
+legend(0, 0, c("estimates", "95% CI"), lty = c(1, 2), lwd = 2, col = "black")
+
+#函數「polygon()」可以畫多邊形
+x = c(1, 0, -1, 0)
+y = c(0, 1, 0, -1)
+plot.new()
+plot.window(xlim = c(-1, 1), ylim = c(-1, 1))
+polygon(x, y, col = "green")
+
