@@ -23,3 +23,24 @@ rgb(0.7, 0.5, 0.3, 0.7)
 
 #有了半透明的顏色後，剛剛的散布圖終於可以看出密度了
 plot(dat[,"SBP"], dat[,"DBP"], ylab = "DBP", xlab = "SBP", main = "Scatter plot of SBP and DBP", pch = 19, cex = 2, col = "#00000030")
+
+#色彩透明度與函數(3)
+#事實上，函數「smoothScatter()」可以畫出與剛剛類似的散布圖：
+smoothScatter(dat[,"SBP"], dat[,"DBP"], nrpoints = 0, ylab = "DBP", xlab = "SBP", main = "Scatter plot of SBP and DBP")
+#我們還可以幫他加註釋，但這比較難，但我們可以google看看有沒有解法
+#看起來是有解法的，但要安裝套件『fields』
+library(fields)
+
+fudgeit <- function(){
+  xm <- get('xm', envir = parent.frame(1))
+  ym <- get('ym', envir = parent.frame(1))
+  z  <- get('dens', envir = parent.frame(1))
+  colramp <- get('colramp', parent.frame(1))
+  image.plot(xm,ym,z, col = colramp(256), legend.only = T, add =F)
+}
+
+par(mar = c(5,4,4,5))
+smoothScatter(dat[,"SBP"], dat[,"DBP"], nrpoints = 0, ylab = "DBP", xlab = "SBP", main = "Scatter plot of SBP and DBP", postPlotHook = fudgeit)
+
+
+
