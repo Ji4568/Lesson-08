@@ -19,3 +19,22 @@ pie(table(dat[,"Education"]))
 #長條圖：需要使用函數「barplot()」以及函數「table()」
 barplot(table(dat[,"Education"]))
 
+#基礎繪圖函數簡介-1(3)
+
+#這些圖都能透過增加不同的參數增加變化，我們可以透過函數「help()」查詢它們內部的參數。舉例來說，我們可以用下列方式改變圖的顏色
+#在R裡面的顏色可以在Colors in R裡查看
+#另外，這裡教一個新函數「par()」，他可以指定繪圖環境。其中最常見的應用為把4張圖放在同一張畫布內：
+par(mfrow = c(2, 2))
+hist(dat[,"eGFR"], col = "red")
+boxplot(dat[,"eGFR"], col = "blue")
+pie(table(dat[,"Education"]), col = c("blue", "red", "green"))
+barplot(table(dat[,"Education"]), col = c("gray90", "gray50", "gray10"))
+
+#你如果喜歡你畫的圖，可以透過函數「pdf()」把圖片存出去，注意最後一定要用函數「dev.off()」關掉那個PDF檔案
+pdf("plot1.pdf", height = 8, width = 8, family = "serif")
+par(mfrow = c(2, 2))
+hist(dat[,"eGFR"], col = "red")
+boxplot(dat[,"eGFR"], col = "blue")
+pie(table(dat[,"Education"]), col = c("blue", "red", "green"))
+barplot(table(dat[,"Education"]), col = c("gray90", "gray50", "gray10"))
+dev.off()
